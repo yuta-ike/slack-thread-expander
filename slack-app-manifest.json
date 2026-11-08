@@ -1,0 +1,21 @@
+{
+  "display_information": {
+    "name": "Thread Expander",
+    "description": "スレッドの返信をチャンネルへ転送します",
+    "background_color": "#244654"
+  },
+  "features": {
+    "bot_user": { "display_name": "Thread Expander", "always_online": false }
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": ["chat:write", "channels:history", "groups:history"]
+    }
+  },
+  "settings": {
+    "event_subscriptions": { "bot_events": ["message.channels", "message.groups"] },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  }
+}

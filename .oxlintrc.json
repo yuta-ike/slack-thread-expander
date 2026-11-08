@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": ["worker-configuration.d.ts"],
+  "env": {
+    "builtin": true
+  },
+  "rules": {
+    "curly": "error"
+  },
+  "options": {
+    "typeAware": true
+  }
+}

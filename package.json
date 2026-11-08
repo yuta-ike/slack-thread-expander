@@ -1,0 +1,38 @@
+{
+  "name": "thread-expander",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.local.jsonc",
+    "deploy": "wrangler deploy --config wrangler.local.jsonc",
+    "cf-typegen": "wrangler types --config wrangler.jsonc --env-file .dev.vars.example --strict-vars=false",
+    "lint": "oxlint --deny-warnings .",
+    "lint:fix": "oxlint --fix .",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "typecheck": "tsc --noEmit",
+    "fix": "pnpm lint:fix && pnpm format",
+    "test": "vitest run",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test",
+    "db:local": "wrangler d1 migrations apply DB --local --config wrangler.local.jsonc",
+    "db:remote": "wrangler d1 migrations apply DB --remote --config wrangler.local.jsonc"
+  },
+  "dependencies": {
+    "@slack/web-api": "catalog:",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "catalog:",
+    "@cloudflare/workers-types": "catalog:",
+    "@slack/types": "catalog:",
+    "@types/node": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "wrangler": "catalog:"
+  },
+  "packageManager": "pnpm@12.16.1"
+}

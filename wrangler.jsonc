@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "thread-expander",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
+  "vars": {
+    "SLACK_TEAM_ID": "",
+    "SOURCE_CHANNEL_IDS": "",
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "thread-expander",
+      // Copy this file to wrangler.local.jsonc and set your own D1 database ID there.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "FORWARD_QUEUE",
+        "queue": "thread-expander",
+      },
+    ],
+    "consumers": [
+      {
+        "queue": "thread-expander",
+        "max_batch_size": 1,
+        "max_batch_timeout": 0,
+        "max_concurrency": 1,
+        "max_retries": 10,
+        "retry_delay": 60,
+        "dead_letter_queue": "thread-expander-dlq",
+      },
+    ],
+  },
+  "triggers": {
+    "crons": ["0 3 * * *"],
+  },
+}
