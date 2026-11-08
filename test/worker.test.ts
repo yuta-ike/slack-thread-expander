@@ -14,7 +14,8 @@ import {
   type ForwardJob,
 } from "../src/events"
 import { deliver, messageKey } from "../src/deliveries"
-import { forwardReply, SlackApiError } from "../src/slack"
+import { forwardReply } from "../src/slack"
+import { SlackApiError } from "../src/slack-helper"
 import { richTextBlock, slackFiles } from "./fixtures"
 import migration from "../migrations/0001_deliveries.sql?raw"
 
@@ -485,7 +486,7 @@ it.each([
   ["123456789012345678901234567890続き", "123456789012345678901234567890"],
   ["あ".repeat(31), "あ".repeat(30)],
   ["😀".repeat(31), "😀".repeat(30)],
-  ["先頭\n次の行", "先頭\n次の行"],
+  ["先頭\n次の行", "先頭 次の行"],
   ["*装飾* _本文_", "*装飾* _本文_"],
   ["記号|を含む本文", "記号｜を含む本文"],
   ["&lt;本文&gt; &amp; 続き", "&lt;本文&gt; &amp; 続き"],

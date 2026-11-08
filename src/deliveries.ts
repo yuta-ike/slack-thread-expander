@@ -1,5 +1,6 @@
 import type { ForwardJob } from "./events"
-import { forwardReply, SlackApiError } from "./slack"
+import { forwardReply } from "./slack"
+import { SlackApiError } from "./slack-helper"
 
 const LEASE_SECONDS = 120
 
